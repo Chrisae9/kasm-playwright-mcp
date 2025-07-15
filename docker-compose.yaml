@@ -1,7 +1,6 @@
 services:
   playwright-desktop:
-    build: .
-    image: playwright-desktop
+    image: ghcr.io/chrisae9/kasm-playwright-mcp:latest
     container_name: playwright-desktop
     # Set the shared memory size, important for browsers
     shm_size: '2g'

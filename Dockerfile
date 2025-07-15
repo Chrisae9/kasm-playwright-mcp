@@ -1,6 +1,8 @@
 # Start from the correct and current LSIO KasmVNC image
 FROM ghcr.io/linuxserver/baseimage-kasmvnc:ubuntunoble
 
+LABEL org.opencontainers.image.source=https://github.com/chrisae9/kasm-playwright-mcp
+
 ENV NVM_DIR="/config/.nvm"
 ENV NODE_VERSION=24.4.0
 ENV NODE_PATH="$NVM_DIR/versions/node/v${NODE_VERSION}/bin"
