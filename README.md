@@ -18,23 +18,11 @@ Browser within a browser, enabled by KasmVNC. Perfect for environments where you
 
 ### 1. Start the MCP Server (Docker)
 
-You can build and run the MCP server using Docker:
+
+Start the server, mapping both the MCP server and the KasmVNC UI ports:
 
 ```sh
-# Build the Docker image
-docker build -t playwright-desktop .
-```
-
-Then start the server, mapping both the MCP server and the KasmVNC UI ports:
-
-```sh
-# Run the container in detached mode
-docker run \
-  --name playwright-desktop \
-  --shm-size=2g \             
-  -p 8931:8931 \              # MCP server port
-  -p 3000:3000 \              # KasmVNC UI port
-  playwright-desktop           
+docker run --shm-size=2g -p 8931:8931 -p 3000:3000 ghcr.io/chrisae9/kasm-playwright-mcp:latest
 ```
 
 This will run the Playwright MCP server in headed mode, listening on port `8931`, and expose the KasmVNC UI on port `3000`.
