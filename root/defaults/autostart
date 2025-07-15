@@ -1,0 +1,1 @@
+xterm -hold -e 'sudo chown -R 911:911 "/config/.npm" && export PATH="$NODE_PATH:$PATH" && npx --yes @playwright/mcp@latest --port 8931 --isolated --no-sandbox'

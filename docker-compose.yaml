@@ -1,0 +1,30 @@
+services:
+  playwright-desktop:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+    # Optionally, name the built image
+    image: playwright-desktop
+    # Set a consistent container name
+    container_name: playwright-desktop
+    # Set the shared memory size, important for browsers
+    shm_size: '2g'
+    # Map the necessary ports
+    ports:
+      # - "3000:3000" # For the KasmVNC web desktop
+      - "8931:8931" # For the Playwright MCP server
+    # Map your local project folder to the container's desktop
+    # volumes:
+    #   - ./project:/config/Desktop/project
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.playwright.rule=Host(`playwright.ts.chis.dev`)"
+      - "traefik.http.routers.playwright.entrypoints=websecure"
+      - "traefik.http.routers.playwright.tls.certresolver=cloudflare"
+      - "traefik.http.services.playwright.loadbalancer.server.port=3000"
+      - "traefik.docker.network=private"
+    networks:
+      - private
+
+networks:
+  private:
+    external: true
